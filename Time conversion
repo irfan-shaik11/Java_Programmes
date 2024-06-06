@@ -1,0 +1,40 @@
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+ 
+public class ConvertCST_IST {
+ 
+	public static void main(String[] args) {
+		//Define date and time format
+		DateTimeFormatter fr = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
+		System.out.println("Time :" + fr);
+		//parse the local date and time
+	//	LocalDateTime localDateTime = LocalDateTime.parse("2024-06-04 14:00:00", fr);
+
+		//Define the source time zone
+		ZoneId cstZoneId = ZoneId.of("America/Chicago");
+		System.out.println("Time :" + cstZoneId);
+		// Define target time zone
+		ZoneId istZoneId = ZoneId.of("Asia/Kolkata");
+		System.out.println("Time :" + istZoneId);
+		// calculate the offset difference between CST and IST
+		int offsetDifferenceHours = 11;
+		String offsetDifferenceminutes = "30";
+		//Convert CST To IST
+		//ZoneDateTime istZoneDateTime = cstZoneDateTime.WithZoneSameInstant(istZoneId);
+		LocalDateTime localDateTime = null;
+		ZonedDateTime cstZoneDateTime = localDateTime.atZone(cstZoneId);
+		LocalDateTime cstZonedDateTime;
+		// Add the offset difference to get IST ZonedDateTime
+	     LocalDateTime istZoneDateTime = cstZonedDateTime.plusHours(offsetDifferenceHours).plusMinutes(offsetDifferenceminutes);
+		LocalDateTime istZonedDateTime;
+		// format the IST ZoneDateTime
+		String istDateTimeString = istZonedDateTime.format(fr);
+		String cstDateTimeString = cstZonedDateTime.format(fr);
+		//Print the converted date and time
+		System.out.println("CST Date and Time :" + cstDateTimeString);
+		System.out.println("IST Date and Time :" + istDateTimeString);
+	}
+ 
+}
